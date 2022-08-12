@@ -18,7 +18,8 @@ async function sendAlert(alert) {
       );
     } else {
       core.setFailed(
-        `PagerDuty API returned status code ${response.status
+        `PagerDuty API returned status code ${
+          response.status
         } - ${JSON.stringify(response.data)}`
       );
     }
@@ -41,8 +42,8 @@ try {
         run_details: `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
         related_commits: context.payload.commits
           ? context.payload.commits
-            .map((commit) => `${commit.message}: ${commit.url}`)
-            .join(", ")
+              .map((commit) => `${commit.message}: ${commit.url}`)
+              .join(", ")
           : "No related commits",
       },
     },
@@ -53,9 +54,12 @@ try {
   if (dedupKey != "") {
     alert.dedup_key = dedupKey;
   }
-  const context = core.getInput("pagerduty-context");
-  if (Array.isArray(context) && context.length > 0) {
-    alert.payload.context = context;
+  const contextStringified = core.getInput("pagerduty-context");
+  if (contextStringified != "") {
+    try {
+      const contextObj = JSON.parse(contextStringified);
+      alert.payload.context = contextObj;
+    } catch (e) {}
   }
   sendAlert(alert);
 } catch (error) {
