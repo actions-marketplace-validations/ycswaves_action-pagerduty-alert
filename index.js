@@ -54,11 +54,11 @@ try {
   if (dedupKey != "") {
     alert.dedup_key = dedupKey;
   }
-  const contextStringified = core.getInput("pagerduty-context");
-  if (contextStringified != "") {
+  const stringifiedLinks = core.getInput("pagerduty-links");
+  if (stringifiedLinks != "") {
     try {
-      const contextObj = JSON.parse(contextStringified);
-      alert.payload.context = contextObj;
+      const links = JSON.parse(stringifiedLinks);
+      alert.links = links;
     } catch (e) {}
   }
   sendAlert(alert);

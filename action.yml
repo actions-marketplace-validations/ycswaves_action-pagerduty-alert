@@ -1,4 +1,4 @@
-name: "PagerDuty Alert with Context"
+name: "PagerDuty Alert Ext"
 description: "GitHub Action to send a critical PagerDuty alert, e.g. on action failure."
 inputs:
   pagerduty-integration-key:
@@ -7,8 +7,8 @@ inputs:
   pagerduty-dedup-key:
     description: "The key used to correlate PagerDuty triggers, acknowledges, and resolves for the same alert."
     required: false
-  pagerduty-context:
-    description: "The Pagerduty Event Context"
+  pagerduty-links:
+    description: "List of links to include."
     required: false
 runs:
   using: "node12"
