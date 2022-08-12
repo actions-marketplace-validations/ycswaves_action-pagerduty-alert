@@ -1,15 +1,18 @@
-name: 'PagerDuty Alert'
-description: 'GitHub Action to send a critical PagerDuty alert, e.g. on action failure.'
+name: "PagerDuty Alert with Context"
+description: "GitHub Action to send a critical PagerDuty alert, e.g. on action failure."
 inputs:
   pagerduty-integration-key:
-    description: 'The integration key for your PagerDuty service'
+    description: "The integration key for your PagerDuty service"
     required: true
   pagerduty-dedup-key:
-    description: 'The key used to correlate PagerDuty triggers, acknowledges, and resolves for the same alert.'
+    description: "The key used to correlate PagerDuty triggers, acknowledges, and resolves for the same alert."
+    required: false
+  pagerduty-context:
+    description: "The Pagerduty Event Context"
     required: false
 runs:
-  using: 'node12'
-  main: 'index.js'
+  using: "node12"
+  main: "index.js"
 branding:
-  icon: 'alert-triangle'
-  color: 'red'
+  icon: "alert-triangle"
+  color: "red"
