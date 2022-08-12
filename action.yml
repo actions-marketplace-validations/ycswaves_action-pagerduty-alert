@@ -10,6 +10,9 @@ inputs:
   pagerduty-links:
     description: "List of links to include."
     required: false
+  show-related-commits:
+    description: "whether to show the related commits in custom details"
+    required: false
 runs:
   using: "node12"
   main: "index.js"
